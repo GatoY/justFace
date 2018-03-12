@@ -1,6 +1,9 @@
 import cv2
 import faceDetect
-def gorgeous(img,faces):
+import copy
+def gorgeous(img,faces, d):
+    newImg = copy.copy(img)
+
     for (x,y,w,h) in faces:
-        img[x:(x+w), y:(y+h)]=cv2.bilateralFilter(img[x:(x+w), y:(y+h)],5,75,75)
-    return img
+        newImg[y:(y+h),x:(x+w)]=cv2.bilateralFilter(newImg[y:(y+h),x:(x+w)],d,75,75)
+    return newImg
